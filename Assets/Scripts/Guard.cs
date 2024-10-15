@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class Guard : MonoBehaviour
     [SerializeField] private GuardRaycast Raycast;
 
     private float playerDetectionLevel = 0;
+    private float playerTargetLevel = 2;
     private float playerDetectedLevel = 4; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
 
     public int playerLightCollisionLevel = 0; //0 = not in tourch, 1 = in outerbounds of torch, 2 = innerbounds of torch
@@ -24,19 +26,25 @@ public class Guard : MonoBehaviour
     private float rotation = 0;
 
     private string rotateDirection = "up";
+    private Quaternion prevRotation;
+
+    [SerializeField] private GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (facingLeft == true){
+        if (facingLeft == true)
+        {
             speed *= -1f;
         }
+
+        prevRotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(speed, 0);
+
         if (playerLightCollisionLevel > 0)
         {
             if (playerDetectionLevel >= playerDetectedLevel)
@@ -44,48 +52,69 @@ public class Guard : MonoBehaviour
                 print("PLAYER SPOTTED");
                 playerDetectionLevel = 0;
             }
+            else if (playerDetectionLevel > playerTargetLevel)
+            {
+                Vector3 targ = Player.transform.position;
+                targ.z = 0f;
+
+                Vector3 objectPos = transform.position;
+                targ.x = targ.x - objectPos.x;
+                targ.y = targ.y - objectPos.y;
+
+                float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+                Torch.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+180));
+                Torch.transform.localScale = new Vector3(Torch.transform.localScale.x , Torch.transform.localScale.y, Torch.transform.localScale.z);
+
+            }
 
             if (Raycast.hasLineOfSight())
             {
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
             }
-            else 
+            else
             {
                 playerDetectionLevel = 0;
             }
 
-            
+
         }
 
-        print(rotation + " max: "+ maxRotation);
-        print(rotateDirection);
-        //print(Torch.transform.localRotation.z >= maxRotation);
-        if (rotateDirection == "up")
+        else if(false)
         {
-            if (rotation <= maxRotation)
+            rb.velocity = new Vector2(speed, 0);
+            if (rotateDirection == "up")
             {
-                print("rotating");
-                Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-                rotation += rotationSpeed * Time.deltaTime * -1;
+                if (rotation <= maxRotation)
+                {
+                    //print("rotating");
+                    Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+                    rotation += rotationSpeed * Time.deltaTime * -1;
 
-                
 
+
+                }
+                else
+                {
+                    rotateDirection = "down";
+                }
             }
-            else
+            else if (rotateDirection == "down")
             {
-                rotateDirection = "down";
-            }
-        }
-        else if (rotateDirection == "down")
-        {
-            if (rotation >= minRotation)
-            {
-                Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime*-1);
-                rotation += rotationSpeed * Time.deltaTime;
+                if (rotation >= minRotation)
+                {
+                    Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * -1);
+                    rotation += rotationSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    rotateDirection = "up";
+                }
             }
             else
             {
                 rotateDirection = "up";
+                Torch.transform.rotation = prevRotation;
+
             }
         }
     }
@@ -99,7 +128,7 @@ public class Guard : MonoBehaviour
     private void flip()
     {
         speed *= -1f;
-        transform.Rotate(0f,180f,0f);
+        transform.Rotate(0f, 180f, 0f);
         if (facingLeft == true)
         {
             facingLeft = false;

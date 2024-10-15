@@ -22,7 +22,7 @@ public class GuardRaycast : MonoBehaviour
         Vector2 endPos = player.transform.position;
 
         RaycastHit2D hit = Physics2D.Linecast(transform.position,endPos,1 << LayerMask.NameToLayer("Action"));
-        Debug.DrawLine(transform.position, player.transform.position, Color.red);
+        //Debug.DrawLine(transform.position, player.transform.position, Color.red);
 
         
 

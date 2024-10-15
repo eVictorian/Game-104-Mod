@@ -166,12 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de3b777b8ec12d429794c13c009ffd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 0
   facingLeft: 1
   rb: {fileID: 3290021597582336688}
   Raycast: {fileID: 6966294094326143267}
   playerLightCollisionLevel: 0
   Torch: {fileID: 4188317193521519436}
+  rotationSpeed: 5
+  Player: {fileID: 0}
 --- !u!1 &4188317193521519436
 GameObject:
   m_ObjectHideFlags: 0
