@@ -14,8 +14,8 @@ public class Guard : MonoBehaviour
     [SerializeField] private GuardRaycast Raycast;
 
     private float playerDetectionLevel = 0;
-    private float playerTargetLevel = 2;
-    private float playerDetectedLevel = 4; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
+    private float playerTargetLevel = 1;
+    private float playerDetectedLevel = 5; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
 
     public int playerLightCollisionLevel = 0; //0 = not in tourch, 1 = in outerbounds of torch, 2 = innerbounds of torch
 
@@ -29,14 +29,15 @@ public class Guard : MonoBehaviour
     private Quaternion prevRotation;
 
     [SerializeField] private GameObject Player;
+    [SerializeField] private Bird playerScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (facingLeft == true)
-        {
-            speed *= -1f;
-        }
+        //if (facingLeft == true)
+        //{
+        //    speed *= -1f;
+        //}
 
         prevRotation = transform.rotation;
     }
@@ -49,8 +50,9 @@ public class Guard : MonoBehaviour
         {
             if (playerDetectionLevel >= playerDetectedLevel)
             {
-                print("PLAYER SPOTTED");
+                playerScript.sendToCheckpoint();
                 playerDetectionLevel = 0;
+                playerLightCollisionLevel = 0;
             }
             else if (playerDetectionLevel > playerTargetLevel)
             {
@@ -79,7 +81,7 @@ public class Guard : MonoBehaviour
 
         }
 
-        else if(false)
+        if (playerDetectionLevel < playerTargetLevel)
         {
             rb.velocity = new Vector2(speed, 0);
             if (rotateDirection == "up")
@@ -113,8 +115,8 @@ public class Guard : MonoBehaviour
             else
             {
                 rotateDirection = "up";
-                Torch.transform.rotation = prevRotation;
-
+                Torch.transform.rotation = new Quaternion(0, 0, 0, 1);
+                rotation = 0;
             }
         }
     }

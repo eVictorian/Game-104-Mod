@@ -18,6 +18,9 @@ public class Bird : MonoBehaviour
     private SpriteRenderer ren;
     private Vector2 moveVector = Vector2.zero;
 
+
+    [SerializeField] private Transform checkpoint;
+
     void Start()
 	{
         deathUI.SetActive(false);
@@ -89,6 +92,11 @@ public class Bird : MonoBehaviour
 		//anim.SetTrigger ("Die");
   //      Invoke("ShowDeathUI", 1.5f);
 	}
+
+    public void sendToCheckpoint()
+    {
+        transform.position = checkpoint.position;
+    }
 
     void ShowDeathUI()
     {
