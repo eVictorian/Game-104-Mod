@@ -14,7 +14,7 @@ public class Guard : MonoBehaviour
     [SerializeField] private GuardRaycast Raycast;
 
     private float playerDetectionLevel = 0;
-    private float playerTargetLevel = 1;
+    private float playerTargetLevel = 1; //player starts being tracked by the guard
     private float playerDetectedLevel = 5; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
 
     public int playerLightCollisionLevel = 0; //0 = not in tourch, 1 = in outerbounds of torch, 2 = innerbounds of torch
@@ -56,17 +56,13 @@ public class Guard : MonoBehaviour
             }
             else if (playerDetectionLevel > playerTargetLevel)
             {
-                Vector3 targ = Player.transform.position;
-                targ.z = 0f;
-
-                Vector3 objectPos = transform.position;
-                targ.x = targ.x - objectPos.x;
-                targ.y = targ.y - objectPos.y;
-
-                float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-                Torch.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle+180));
-                Torch.transform.localScale = new Vector3(Torch.transform.localScale.x , Torch.transform.localScale.y, Torch.transform.localScale.z);
-
+                AimTowardsPlayer();
+                if (Torch.transform.rotation.z < -90) 
+                {
+                    flip();
+                    AimTowardsPlayer();
+                }
+                rotateDirection = "tracking";
             }
 
             if (Raycast.hasLineOfSight())
@@ -112,10 +108,10 @@ public class Guard : MonoBehaviour
                     rotateDirection = "up";
                 }
             }
-            else
+            else if (rotateDirection == "tracking")
             {
                 rotateDirection = "up";
-                Torch.transform.rotation = new Quaternion(0, 0, 0, 1);
+                Torch.transform.localRotation = new Quaternion(0, 0, 0, 1);
                 rotation = 0;
             }
         }
@@ -139,6 +135,20 @@ public class Guard : MonoBehaviour
         {
             facingLeft = true;
         }
+    }
+
+    private void AimTowardsPlayer()
+    {
+        Vector3 targ = Player.transform.position;
+        targ.z = 0f;
+
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        Torch.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+        Torch.transform.localScale = new Vector3(Torch.transform.localScale.x, Torch.transform.localScale.y, Torch.transform.localScale.z);
     }
 
 }
