@@ -34,11 +34,6 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (facingLeft == true)
-        //{
-        //    speed *= -1f;
-        //}
-
         prevRotation = transform.rotation;
     }
 
