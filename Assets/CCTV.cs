@@ -8,8 +8,7 @@ public class CCTV : MonoBehaviour
     [SerializeField] private GuardRaycast Raycast;
 
     private float playerDetectionLevel = 0;
-    private float playerTargetLevel = 0.75f; //player starts being tracked by the guard
-    private float playerDetectedLevel = 5; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
+    private float playerDetectedLevel = 1; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
 
     public int playerLightCollisionLevel = 0; //0 = not in tourch, 1 = in outerbounds of torch, 2 = innerbounds of torch
 
@@ -27,7 +26,7 @@ public class CCTV : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Torch.transform.Rotate(0f, 0f, 45);
+        Torch.transform.Rotate(0f, 0f, -45);
     }
 
     // Update is called once per frame
@@ -41,10 +40,10 @@ public class CCTV : MonoBehaviour
                 playerDetectionLevel = 0;
                 playerLightCollisionLevel = 0;
             }
-            
 
             if (Raycast.hasLineOfSight())
             {
+                print("YOU SEE ME");
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
             }
             else
@@ -55,39 +54,35 @@ public class CCTV : MonoBehaviour
 
         }
 
-        if (playerDetectionLevel < playerTargetLevel)
+
+        if (rotateDirection == "clockwise")
         {
-            print(rotateDirection);
-            print(rotation+" "+ maxRotation);
-            if (rotateDirection == "clockwise")
+            if (rotation <= maxRotation)
             {
-                if (rotation <= maxRotation)
-                {
-                    Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-                    rotation += rotationSpeed * Time.deltaTime;
+                Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+                rotation += rotationSpeed * Time.deltaTime;
 
 
 
-                }
-                else
-                {
-                    rotateDirection = "antiClockwise";
-                }
             }
-            else if (rotateDirection == "antiClockwise")
+            else
             {
-                if (rotation >= minRotation)
-                {
-                    print("huh");
-                    Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * -1);
-                    rotation += rotationSpeed * Time.deltaTime *-1;
-                }
-                else
-                {
-                    rotateDirection = "clockwise";
-                }
+                rotateDirection = "antiClockwise";
             }
         }
+        else if (rotateDirection == "antiClockwise")
+        {
+            if (rotation >= minRotation)
+            {
+                Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * -1);
+                rotation += rotationSpeed * Time.deltaTime *-1;
+            }
+            else
+            {
+                rotateDirection = "clockwise";
+            }
+         }
+        
     }
 
 

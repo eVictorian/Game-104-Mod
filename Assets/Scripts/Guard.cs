@@ -31,6 +31,8 @@ public class Guard : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private Bird playerScript;
 
+    public bool printlightcollision = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,10 +66,11 @@ public class Guard : MonoBehaviour
             {
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
             }
-            else
-            {
-                playerDetectionLevel = 0;
-            }
+        else
+        {
+            playerDetectionLevel = 0;
+        }
+
 
 
         }

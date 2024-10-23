@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardOuterDetection : MonoBehaviour
+public class cameraDetection : MonoBehaviour
 {
-    [SerializeField] private Guard guardScript;
-
-
+    [SerializeField] private CCTV CCTV;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -23,7 +21,7 @@ public class GuardOuterDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            guardScript.playerLightCollisionLevel += 1;
+            CCTV.playerLightCollisionLevel += 1;
         }
     }
 
@@ -31,9 +29,7 @@ public class GuardOuterDetection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            guardScript.playerLightCollisionLevel = 0;
+            CCTV.playerLightCollisionLevel = 0;
         }
     }
-
-
 }
