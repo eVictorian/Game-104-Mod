@@ -43,7 +43,6 @@ public class CCTV : MonoBehaviour
 
             if (Raycast.hasLineOfSight())
             {
-                print("YOU SEE ME");
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
             }
             else

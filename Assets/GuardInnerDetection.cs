@@ -24,7 +24,6 @@ public class GuardInnerDetection : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             guardScript.playerLightCollisionLevel += 1;
-            print("Entered");
         }
     }
 
@@ -33,7 +32,6 @@ public class GuardInnerDetection : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             guardScript.playerLightCollisionLevel -= 1;
-            print("Exited");
         }
     }
 }

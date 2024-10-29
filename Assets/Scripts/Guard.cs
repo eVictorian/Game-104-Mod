@@ -27,7 +27,7 @@ public class Guard : MonoBehaviour
 
     private string rotateDirection = "up";
     private Quaternion prevRotation;
-
+    
     [SerializeField] private GameObject Player;
     [SerializeField] private Bird playerScript;
 
@@ -62,17 +62,22 @@ public class Guard : MonoBehaviour
                 rotateDirection = "tracking";
             }
 
+
             if (Raycast.hasLineOfSight())
             {
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
             }
+           
+            else
+            {
+                playerDetectionLevel = 0;
+            }
+
+        }
+
         else
         {
             playerDetectionLevel = 0;
-        }
-
-
-
         }
 
         if (playerDetectionLevel < playerTargetLevel)
@@ -137,6 +142,7 @@ public class Guard : MonoBehaviour
 
     private void AimTowardsPlayer()
     {
+        //The maths segment of this was copied then modified to work for the torch
         Vector3 targ = Player.transform.position;
         targ.z = 0f;
 

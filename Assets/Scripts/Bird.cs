@@ -19,7 +19,7 @@ public class Bird : MonoBehaviour
     private Vector2 moveVector = Vector2.zero;
 
 
-    [SerializeField] private Transform checkpoint;
+    public Transform checkpoint;
 
     void Start()
 	{
@@ -33,7 +33,7 @@ public class Bird : MonoBehaviour
     }
 
     void Update()
-	{       
+	{
         //Don't allow control if the bird has died.
         if (isDead == false) 
 		{
