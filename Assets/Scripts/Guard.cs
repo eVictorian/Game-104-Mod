@@ -51,7 +51,7 @@ public class Guard : MonoBehaviour
                 playerDetectionLevel = 0;
                 playerLightCollisionLevel = 0;
             }
-            else if (playerDetectionLevel > playerTargetLevel)
+            else if (playerDetectionLevel >= playerTargetLevel)
             {
                 AimTowardsPlayer();
                 if (Torch.transform.rotation.z < -90) 
@@ -122,7 +122,8 @@ public class Guard : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        flip();
+        if (collision.gameObject.CompareTag("flipPoint")) { flip(); }
+        else if (collision.gameObject.CompareTag("Player")) { playerScript.sendToCheckpoint(); }
 
     }
 
