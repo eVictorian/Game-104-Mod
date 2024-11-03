@@ -33,9 +33,14 @@ public class Guard : MonoBehaviour
 
     public bool printlightcollision = false;
 
+
+    public GameObject detectionBar;
+    private bool detectionBarHidden = true;
+    private float detectionLevelPercentage;
     // Start is called before the first frame update
     void Start()
     {
+        detectionBar.SetActive(false);
         prevRotation = transform.rotation;
     }
 
@@ -63,21 +68,26 @@ public class Guard : MonoBehaviour
             }
 
 
+
             if (Raycast.hasLineOfSight())
             {
+                
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
+
             }
            
             else
             {
                 playerDetectionLevel = 0;
             }
+            updateDetectionBar();
 
         }
 
-        else
+        else if (playerDetectedLevel > 0) 
         {
             playerDetectionLevel = 0;
+            updateDetectionBar();
         }
 
         if (playerDetectionLevel < playerTargetLevel)
@@ -154,6 +164,28 @@ public class Guard : MonoBehaviour
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
         Torch.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
         Torch.transform.localScale = new Vector3(Torch.transform.localScale.x, Torch.transform.localScale.y, Torch.transform.localScale.z);
+    }
+
+    private void updateDetectionBar() 
+    {
+        detectionLevelPercentage = playerDetectionLevel / playerDetectedLevel;
+        detectionBar.GetComponent<DetectionBar>().updateDetectionBar(detectionLevelPercentage);
+
+        if (detectionLevelPercentage == 0 && !detectionBarHidden) 
+        { 
+            detectionBar.SetActive(false); 
+            detectionBarHidden = true;
+        }
+        else if (detectionLevelPercentage > 0) 
+        {
+            if (detectionBarHidden) 
+            { 
+                detectionBar.SetActive(true);
+                detectionBarHidden= false;
+            }
+            detectionBar.GetComponent<DetectionBar>().updateDetectionBar(detectionLevelPercentage);
+        }
+        
     }
 
 }

@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3396028749420426546}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3232318952580588926
 SpriteRenderer:
@@ -53,6 +53,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -90,7 +92,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8937732610695487057
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,6 +106,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -121,10 +124,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.2
+  m_Mass: 2
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -144,6 +147,7 @@ PolygonCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3396028749420426546}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -167,7 +171,8 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,21 +185,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.565, y: 0.005}
-      - {x: 0.525, y: 0.044999998}
-      - {x: 0.285, y: 0.235}
-      - {x: 0.005, y: 0.33499998}
-      - {x: -0.285, y: 0.33499998}
-      - {x: -0.345, y: 0.325}
-      - {x: -0.48499998, y: 0.24499999}
-      - {x: -0.565, y: 0.105}
-      - {x: -0.565, y: -0.145}
-      - {x: -0.545, y: -0.24499999}
-      - {x: -0.39499998, y: -0.33499998}
-      - {x: 0.21499999, y: -0.33499998}
-      - {x: 0.435, y: -0.185}
-      - {x: 0.555, y: -0.105}
-      - {x: 0.565, y: -0.044999998}
+    - - {x: 0.45592684, y: 0.015555267}
+      - {x: 0.33500183, y: 0.009815138}
+      - {x: 0.26037088, y: 0.13648163}
+      - {x: -0.0602856, y: 0.26463026}
+      - {x: -0.28908038, y: 0.27518743}
+      - {x: -0.3414819, y: 0.25463027}
+      - {x: -0.46740755, y: 0.16759215}
+      - {x: -0.50518554, y: 0.09092758}
+      - {x: -0.49814886, y: -0.10629608}
+      - {x: -0.44296402, y: -0.23092566}
+      - {x: -0.3914814, y: -0.30685133}
+      - {x: 0.17963696, y: -0.31388944}
+      - {x: 0.29426056, y: -0.17444474}
+      - {x: 0.36500186, y: -0.14722106}
+      - {x: 0.45944542, y: -0.059074324}
   m_UseDelaunayMesh: 0
 --- !u!114 &5934678917142024981
 MonoBehaviour:
@@ -210,3 +215,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upForce: 200
   moveForce: 2
+  deathUI: {fileID: 0}
+  checkpoint: {fileID: 0}

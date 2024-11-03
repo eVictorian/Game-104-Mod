@@ -23,9 +23,14 @@ public class CCTV : MonoBehaviour
 
     [SerializeField] private GameObject Player;
     [SerializeField] private Bird playerScript;
+
+    public GameObject detectionBar;
+    private bool detectionBarHidden = true;
+    private float detectionLevelPercentage;
     // Start is called before the first frame update
     void Start()
     {
+        detectionBar.SetActive(false);
         Torch.transform.Rotate(0f, 0f, -45);
     }
 
@@ -49,11 +54,15 @@ public class CCTV : MonoBehaviour
             {
                 playerDetectionLevel = 0;
             }
-
+            updateDetectionBar();
 
         }
 
-
+        else if (playerDetectedLevel > 0)
+        {
+            playerDetectionLevel = 0;
+            updateDetectionBar();
+        }
         if (rotateDirection == "clockwise")
         {
             if (rotation <= maxRotation)
@@ -82,6 +91,28 @@ public class CCTV : MonoBehaviour
             }
          }
         
+    }
+
+    private void updateDetectionBar()
+    {
+        detectionLevelPercentage = playerDetectionLevel / playerDetectedLevel;
+        detectionBar.GetComponent<DetectionBar>().updateDetectionBar(detectionLevelPercentage);
+
+        if (detectionLevelPercentage == 0 && !detectionBarHidden)
+        {
+            detectionBar.SetActive(false);
+            detectionBarHidden = true;
+        }
+        else if (detectionLevelPercentage > 0)
+        {
+            if (detectionBarHidden)
+            {
+                detectionBar.SetActive(true);
+                detectionBarHidden = false;
+            }
+            detectionBar.GetComponent<DetectionBar>().updateDetectionBar(detectionLevelPercentage);
+        }
+
     }
 
 
