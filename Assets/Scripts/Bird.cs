@@ -5,8 +5,8 @@
 // Handles input, movement and animation for the player controlled object.
 public class Bird : MonoBehaviour 
 {
-	public float upForce = 10; // the power of the bird's flap.
-    public float moveForce = 3;
+	public float upForce = 8; // the power of the bird's flap.
+    public float moveForce = 1;
     [SerializeField]
     private GameObject deathUI;
 
@@ -20,6 +20,8 @@ public class Bird : MonoBehaviour
 
 
     public Transform checkpoint;
+
+    public int accessLevel = 0;
 
     void Start()
 	{

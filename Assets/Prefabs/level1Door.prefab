@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7363735981493957631}
   - component: {fileID: 592272561361039067}
   - component: {fileID: 4722765405365066648}
+  - component: {fileID: 7433214043274864231}
   m_Layer: 0
   m_Name: doorScanner
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c4dc496c6a824514383d7fa3bd32cb2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -133,6 +134,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21287307, y: 4.001243}
   m_EdgeRadius: 0
+--- !u!114 &7433214043274864231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6733486716281241522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4ffb2740350804fbe46e3ad4ada8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6756779085870384853
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 073539a78e67aec40982f1158896c221, type: 3}
   m_Color: {r: 0.6502562, g: 1, b: 0.4669811, a: 1}
   m_FlipX: 0
@@ -280,3 +293,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f795885b94439a47b6f2fd3fb47d2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyLevel: 1
+  frontPart: {fileID: 6733486716281241522}
