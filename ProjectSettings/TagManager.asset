@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Border
   - flipPoint
+  - item
   layers:
   - Default
   - TransparentFX

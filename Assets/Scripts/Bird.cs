@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 // This script is attached o the player controlled object in the scene.
@@ -22,6 +23,9 @@ public class Bird : MonoBehaviour
     public Transform checkpoint;
 
     public int accessLevel = 0;
+
+    public string currentItem = null;
+    
 
     void Start()
 	{
