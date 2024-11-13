@@ -25,7 +25,8 @@ public class Bird : MonoBehaviour
     public int accessLevel = 0;
 
     public string currentItem = null;
-    
+
+    public GameObject accessLevelUIText;
 
     void Start()
 	{
@@ -103,6 +104,13 @@ public class Bird : MonoBehaviour
     {
         transform.position = checkpoint.position;
     }
+
+    public void updateAccessLevel(int newLevel)
+    {
+        accessLevel = newLevel;
+        accessLevelUIText.GetComponent<TMPro.TextMeshProUGUI>().text = "Access Level: "+accessLevel.ToString();
+    }
+
 
     void ShowDeathUI()
     {

@@ -22,7 +22,7 @@ public class keycard : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Bird>().accessLevel < cardLevel) 
             { 
-                collision.gameObject.GetComponent<Bird>().accessLevel = cardLevel;
+                collision.gameObject.GetComponent<Bird>().updateAccessLevel(cardLevel);
                 Destroy(this.gameObject);
             }
         }
