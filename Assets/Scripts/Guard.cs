@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 public class Guard : MonoBehaviour
 {
     [SerializeField] private float speed = 1.5f;
-    [SerializeField] private bool facingLeft = false;
 
     [SerializeField] private Rigidbody2D rb;
 
@@ -28,7 +27,7 @@ public class Guard : MonoBehaviour
     private string rotateDirection = "up";
     private Quaternion prevRotation;
     
-    [SerializeField] private GameObject Player;
+    GameObject player;
     private Bird playerScript;
 
     public bool printlightcollision = false;
@@ -43,7 +42,10 @@ public class Guard : MonoBehaviour
         detectionBar.SetActive(false);
         prevRotation = transform.rotation;
 
-        playerScript = Player.GetComponent<Bird>();
+        player = Bird.player;
+        playerScript = player.GetComponent<Bird>();
+
+        speed *= -1f;
     }
 
     // Update is called once per frame
@@ -143,20 +145,13 @@ public class Guard : MonoBehaviour
     {
         speed *= -1f;
         transform.Rotate(0f, 180f, 0f);
-        if (facingLeft == true)
-        {
-            facingLeft = false;
-        }
-        else
-        {
-            facingLeft = true;
-        }
+
     }
 
     private void AimTowardsPlayer()
     {
         //The maths segment of this was copied then modified to work for the torch
-        Vector3 targ = Player.transform.position;
+        Vector3 targ = player.transform.position;
         targ.z = 0f;
 
         Vector3 objectPos = transform.position;

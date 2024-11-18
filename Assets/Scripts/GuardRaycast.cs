@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GuardRaycast : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = Bird.player;
     }
 
     // Update is called once per frame

@@ -21,8 +21,8 @@ public class CCTV : MonoBehaviour
     private string rotateDirection = "clockwise";
     private Quaternion prevRotation;
 
-    [SerializeField] private GameObject Player;
-    [SerializeField] private Bird playerScript;
+    GameObject player;
+    private Bird playerScript;
 
     public GameObject detectionBar;
     private bool detectionBarHidden = true;
@@ -30,6 +30,8 @@ public class CCTV : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = Bird.player;
+        playerScript = player.GetComponent<Bird>();
         detectionBar.SetActive(false);
         Torch.transform.Rotate(0f, 0f, -45);
     }

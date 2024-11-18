@@ -11,9 +11,9 @@ public class Bird : MonoBehaviour
     [SerializeField]
     private GameObject deathUI;
 
+    public static GameObject player;
 
-
-	private bool isDead = false;			//Has the player collided with a wall?
+    private bool isDead = false;			//Has the player collided with a wall?
 	private Animator anim;					//Reference to the Animator component.
 	private Rigidbody2D rb;               //Holds a reference to the Rigidbody2D component of the bird.
     private SpriteRenderer ren;
@@ -37,6 +37,14 @@ public class Bird : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
         //Get and store a reference to the renderer attached to this GameObject.
         ren = GetComponent<SpriteRenderer> ();
+
+
+        
+    }
+
+    private void Awake()
+    {
+        player = gameObject;
     }
 
     void Update()
