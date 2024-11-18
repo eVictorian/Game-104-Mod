@@ -29,7 +29,7 @@ public class Guard : MonoBehaviour
     private Quaternion prevRotation;
     
     [SerializeField] private GameObject Player;
-    [SerializeField] private Bird playerScript;
+    private Bird playerScript;
 
     public bool printlightcollision = false;
 
@@ -42,6 +42,8 @@ public class Guard : MonoBehaviour
     {
         detectionBar.SetActive(false);
         prevRotation = transform.rotation;
+
+        playerScript = Player.GetComponent<Bird>();
     }
 
     // Update is called once per frame
