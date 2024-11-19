@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 3636437222155582022}
   m_Layer: 0
   m_Name: level1Door
-  m_TagString: Untagged
+  m_TagString: flipPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

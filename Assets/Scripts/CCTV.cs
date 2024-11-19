@@ -15,7 +15,11 @@ public class CCTV : MonoBehaviour
     [SerializeField] private GameObject Torch;
     private float maxRotation = 90;
     private float minRotation = 0;
-    private float rotationSpeed = 20f;
+
+    [SerializeField] private float startRotationChange = -45f;
+
+    [SerializeField] private float rotationSpeed = 20f;
+    
     private float rotation = 0;
 
     private string rotateDirection = "clockwise";
@@ -33,7 +37,7 @@ public class CCTV : MonoBehaviour
         player = Bird.player;
         playerScript = player.GetComponent<Bird>();
         detectionBar.SetActive(false);
-        Torch.transform.Rotate(0f, 0f, -45);
+        Torch.transform.Rotate(0f, 0f, startRotationChange);
     }
 
     // Update is called once per frame

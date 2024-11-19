@@ -84,8 +84,9 @@ public class Bird : MonoBehaviour
 
 
             //Look for input to trigger a "flap".
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown("space"))
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) && jumpCooldownProgress <= 0)
             {
+                jumpCooldownProgress = jumpCooldown;
                 //...tell the animator about it and then...
                 anim.SetBool("Flap", true);
                 rb.AddForce(new Vector2(0, upForce));
