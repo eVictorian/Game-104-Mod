@@ -36,6 +36,9 @@ public class Guard : MonoBehaviour
     public GameObject detectionBar;
     private bool detectionBarHidden = true;
     private float detectionLevelPercentage;
+
+    [SerializeField] private bool debugging = false; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,10 +66,21 @@ public class Guard : MonoBehaviour
             else if (playerDetectionLevel >= playerTargetLevel)
             {
                 AimTowardsPlayer();
-                if (Torch.transform.rotation.z < -90) 
+                if (debugging) 
+                { 
+                    print(Torch.transform.localEulerAngles.z);
+                    print(transform.localEulerAngles.y);
+
+                }
+                if ((Torch.transform.localEulerAngles.z < 270 && transform.localEulerAngles.y == 0) || (Torch.transform.localEulerAngles.z > 270 && transform.localEulerAngles.y == 180)) 
                 {
+                    
                     flip();
                     AimTowardsPlayer();
+                }
+                if (Torch.transform.localEulerAngles.z >= 360)
+                {
+                    Torch.transform.localEulerAngles = new Vector3(0, Torch.transform.localEulerAngles.y,0);
                 }
                 rotateDirection = "tracking";
             }

@@ -28,6 +28,9 @@ public class Bird : MonoBehaviour
 
     public GameObject accessLevelUIText;
 
+    private float jumpCooldown = 0.2f;
+    private float jumpCooldownProgress = 0.0f;
+
     void Start()
 	{
         deathUI.SetActive(false);
@@ -49,9 +52,14 @@ public class Bird : MonoBehaviour
 
     void Update()
 	{
+        
         //Don't allow control if the bird has died.
         if (isDead == false) 
 		{
+            if (jumpCooldownProgress > 0)
+            {
+                jumpCooldownProgress -= Time.deltaTime;
+            }
             // get left/right movement input...
             float direction = Input.GetAxis("Horizontal");
 

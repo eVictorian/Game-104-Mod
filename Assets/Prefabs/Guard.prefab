@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 32.0405, y: -17.9324, z: 0.05270332}
-  m_LocalScale: {x: 0.841, y: 1.1476, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7344846420639749529}
@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  facingLeft: 1
   rb: {fileID: 3290021597582336688}
   Raycast: {fileID: 6966294094326143267}
   playerLightCollisionLevel: 0
@@ -579,7 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdad2bc596c32c46bf57a6287d1fa7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3396028749420426546, guid: 53913a0b2bd6a9d41ad580e020f6a887, type: 3}
 --- !u!1 &6305342339267344568
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,10 +750,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 21.305328
-  m_PointLightOuterAngle: 56.110336
+  m_PointLightInnerAngle: 7.383318
+  m_PointLightOuterAngle: 42.188324
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5.3499
+  m_PointLightOuterRadius: 6.395403
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -791,7 +789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7137669172431813653}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 3.1800005, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -839,7 +837,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 21.305328
   m_PointLightOuterAngle: 21.305328
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5.3499
+  m_PointLightOuterRadius: 5.4023376
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -1076,7 +1074,7 @@ Transform:
   m_GameObject: {fileID: 8913289562648250422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.176, y: 0.007, z: -0.0475271}
+  m_LocalPosition: {x: -3.201, y: 0.005, z: -0.0475271}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1126,7 +1124,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 880f83b1516b1f844ab54f573c5f4bb8, type: 3}
-  m_Color: {r: 0.9622642, g: 0.6969925, b: 0.49474904, a: 0.36862746}
+  m_Color: {r: 0.9622642, g: 0.6969925, b: 0.49474904, a: 0.33333334}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
