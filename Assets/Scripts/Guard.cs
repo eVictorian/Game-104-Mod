@@ -37,11 +37,15 @@ public class Guard : MonoBehaviour
     private bool detectionBarHidden = true;
     private float detectionLevelPercentage;
 
-    [SerializeField] private bool debugging = false; 
+    [SerializeField] private bool debugging = false;
+
+    AudioSource footsteps;
 
     // Start is called before the first frame update
     void Start()
     {
+        footsteps = GetComponent<AudioSource>();
+
         detectionBar.SetActive(false);
         prevRotation = transform.rotation;
 
@@ -62,6 +66,7 @@ public class Guard : MonoBehaviour
                 playerScript.sendToCheckpoint();
                 playerDetectionLevel = 0;
                 playerLightCollisionLevel = 0;
+                footsteps.Play();
             }
             else if (playerDetectionLevel >= playerTargetLevel)
             {
@@ -91,12 +96,13 @@ public class Guard : MonoBehaviour
             {
                 
                 playerDetectionLevel += Time.deltaTime * playerLightCollisionLevel;
-
+                
             }
            
             else
             {
                 playerDetectionLevel = 0;
+                footsteps.Play();
             }
             updateDetectionBar();
 
@@ -106,6 +112,7 @@ public class Guard : MonoBehaviour
         {
             playerDetectionLevel = 0;
             updateDetectionBar();
+            
         }
 
         if (playerDetectionLevel < playerTargetLevel)
@@ -164,6 +171,7 @@ public class Guard : MonoBehaviour
 
     private void AimTowardsPlayer()
     {
+        footsteps.Stop();
         //The maths segment of this was copied then modified to work for the torch
         Vector3 targ = player.transform.position;
         targ.z = 0f;

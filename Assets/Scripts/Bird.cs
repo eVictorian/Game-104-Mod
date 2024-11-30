@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 // This script is attached o the player controlled object in the scene.
@@ -31,8 +32,17 @@ public class Bird : MonoBehaviour
     private float jumpCooldown = 0.2f;
     private float jumpCooldownProgress = 0.0f;
 
+    AudioSource tempMovementSoundPlayer;
+    [SerializeField] AudioSource movementLoopSoundPlayer;
+    [SerializeField] AudioResource takingOff;
+    [SerializeField] AudioResource landing;
+
+    bool onGround = true;
+
     void Start()
 	{
+        tempMovementSoundPlayer = GetComponent<AudioSource>();
+
         deathUI.SetActive(false);
 		//Get reference to the Animator component attached to this GameObject.
 		anim = GetComponent<Animator> ();
@@ -68,14 +78,12 @@ public class Bird : MonoBehaviour
                 rb.drag = 5;
                 rb.AddForce(new Vector2(moveForce, 0));
                 ren.flipX = false;
-                anim.SetBool("Flap", true);
             }
             else if ( direction <0)
             {
                 rb.drag = 5;
                 rb.AddForce(new Vector2(-moveForce, 0));
                 ren.flipX = true;
-                anim.SetBool("Flap", true);
             }
             else
             {
@@ -87,15 +95,19 @@ public class Bird : MonoBehaviour
             if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) && jumpCooldownProgress <= 0)
             {
                 jumpCooldownProgress = jumpCooldown;
-                //...tell the animator about it and then...
-                anim.SetBool("Flap", true);
+               
                 rb.AddForce(new Vector2(0, upForce));
                 rb.drag = 5;
+
+                if (onGround)
+                {
+                    print("Tests");
+                    tempMovementSoundPlayer.resource = takingOff;
+                    tempMovementSoundPlayer.Play();
+                    movementLoopSoundPlayer.PlayDelayed(1.464f);
+                }
             }
-            else
-            {
-                anim.SetBool("Flap", false);           
-            }
+
         }
 	}
     // If the bird collides with anything in the scene, it dies.
@@ -128,6 +140,30 @@ public class Bird : MonoBehaviour
         accessLevelUIText.GetComponent<TMPro.TextMeshProUGUI>().text = "Access Level: "+accessLevel.ToString();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6) 
+        { 
+            anim.SetBool("onGround", true);
+            onGround = true;
+            tempMovementSoundPlayer.resource = landing;
+            tempMovementSoundPlayer.Play();
+            movementLoopSoundPlayer.Stop();
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6) 
+        { 
+            anim.SetBool("onGround", false);
+            onGround = false;
+        }
+        onGround = false;
+        
+    }
+
+    
 
     void ShowDeathUI()
     {
