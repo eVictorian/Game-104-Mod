@@ -102,9 +102,7 @@ public class Bird : MonoBehaviour
                 if (onGround)
                 {
                     print("Tests");
-                    tempMovementSoundPlayer.resource = takingOff;
-                    tempMovementSoundPlayer.Play();
-                    movementLoopSoundPlayer.PlayDelayed(1.464f);
+                    
                 }
             }
 
@@ -143,7 +141,8 @@ public class Bird : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6) 
-        { 
+        {
+            print("Test1");
             anim.SetBool("onGround", true);
             onGround = true;
             tempMovementSoundPlayer.resource = landing;
@@ -155,9 +154,13 @@ public class Bird : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 6) 
-        { 
+        {
+            print("Test2");
             anim.SetBool("onGround", false);
             onGround = false;
+            tempMovementSoundPlayer.resource = takingOff;
+            tempMovementSoundPlayer.Play();
+            movementLoopSoundPlayer.PlayDelayed(1.464f);
         }
         onGround = false;
         
