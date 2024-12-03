@@ -39,6 +39,9 @@ public class Bird : MonoBehaviour
 
     bool onGround = true;
 
+    float moveForceToAdd = 0;
+    float upForceToAdd = 0;
+
     void Start()
 	{
         tempMovementSoundPlayer = GetComponent<AudioSource>();
@@ -76,13 +79,15 @@ public class Bird : MonoBehaviour
             if (direction > 0)
             {
                 rb.drag = 5;
-                rb.AddForce(new Vector2(moveForce, 0));
+                //rb.AddForce(new Vector2(moveForce, 0));
+                moveForceToAdd += moveForce;
                 ren.flipX = false;
             }
             else if ( direction <0)
             {
                 rb.drag = 5;
-                rb.AddForce(new Vector2(-moveForce, 0));
+                //rb.AddForce(new Vector2(-moveForce, 0));
+                moveForceToAdd -= moveForce;
                 ren.flipX = true;
             }
             else
@@ -95,21 +100,32 @@ public class Bird : MonoBehaviour
             if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) && jumpCooldownProgress <= 0)
             {
                 jumpCooldownProgress = jumpCooldown;
-               
-                rb.AddForce(new Vector2(0, upForce));
+                upForceToAdd += upForce;
+                //rb.AddForce(new Vector2(0, upForce));
                 rb.drag = 5;
 
-                if (onGround)
-                {
-                    print("Tests");
-                    
-                }
+
             }
 
         }
 	}
+
+    private void FixedUpdate()
+    {
+        if (moveForceToAdd != 0)
+        {
+            rb.AddForce(new Vector2(moveForceToAdd*Time.fixedDeltaTime*250, 0));
+            moveForceToAdd = 0;
+        }
+        if (upForceToAdd != 0) 
+            {
+                rb.AddForce(new Vector2(0, upForceToAdd * Time.fixedDeltaTime * 80));
+                upForceToAdd = 0;
+            }
+    }
+
     // If the bird collides with anything in the scene, it dies.
-	void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
 	{
   //      //if invisible borders at the edges of the level are tagged,
   //      //they can prevent the player from flying out of bounds.

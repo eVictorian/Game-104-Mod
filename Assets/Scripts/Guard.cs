@@ -122,7 +122,6 @@ public class Guard : MonoBehaviour
             {
                 if (rotation <= maxRotation)
                 {
-                    //print("rotating");
                     Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
                     rotation += rotationSpeed * Time.deltaTime * -1;
 
