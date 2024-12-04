@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8097438181084684221}
   - component: {fileID: 8404399913867329866}
   m_Layer: 0
-  m_Name: level 3 keycard
+  m_Name: level 4 keycard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.09803922, b: 0.09803922, a: 1}
+  m_Color: {r: 0.8156863, g: 0.09803922, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18dac1126e55524f92a35c392df6c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardLevel: 3
+  cardLevel: 4
 --- !u!61 &8404399913867329866
 BoxCollider2D:
   m_ObjectHideFlags: 0
