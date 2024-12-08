@@ -42,6 +42,12 @@ public class Bird : MonoBehaviour
     float moveForceToAdd = 0;
     float upForceToAdd = 0;
 
+    float teleporting = 0;
+
+
+    [SerializeField] Animator teleportAnim;
+    [SerializeField] SpriteRenderer teleportRen;
+    [SerializeField] AudioSource teleportSFX;
     void Start()
 	{
         tempMovementSoundPlayer = GetComponent<AudioSource>();
@@ -80,14 +86,14 @@ public class Bird : MonoBehaviour
             {
                 rb.drag = 5;
                 //rb.AddForce(new Vector2(moveForce, 0));
-                moveForceToAdd += moveForce;
+                moveForceToAdd = moveForce;
                 ren.flipX = false;
             }
             else if ( direction <0)
             {
                 rb.drag = 5;
                 //rb.AddForce(new Vector2(-moveForce, 0));
-                moveForceToAdd -= moveForce;
+                moveForceToAdd = -moveForce;
                 ren.flipX = true;
             }
             else
@@ -100,7 +106,7 @@ public class Bird : MonoBehaviour
             if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown("space")) && jumpCooldownProgress <= 0)
             {
                 jumpCooldownProgress = jumpCooldown;
-                upForceToAdd += upForce;
+                upForceToAdd = upForce;
                 //rb.AddForce(new Vector2(0, upForce));
                 rb.drag = 5;
 
@@ -108,18 +114,30 @@ public class Bird : MonoBehaviour
             }
 
         }
+        if (teleporting >0)
+            teleporting -= Time.deltaTime;
+        {
+            if (teleporting < 0.05) { teleportRen.enabled = false; }
+            else if (teleporting < 0.2) { ren.enabled = true; }
+            else if (teleporting < 0.25)
+            {
+                transform.position = checkpoint.position;
+            }
+            else if (teleporting < 0.45) { ren.enabled = false; }
+            
+        } 
 	}
 
     private void FixedUpdate()
     {
         if (moveForceToAdd != 0)
         {
-            rb.AddForce(new Vector2(moveForceToAdd*Time.fixedDeltaTime*250, 0));
+            rb.AddForce(new Vector2(moveForceToAdd*Time.fixedDeltaTime*550, 0));
             moveForceToAdd = 0;
         }
         if (upForceToAdd != 0) 
             {
-                rb.AddForce(new Vector2(0, upForceToAdd * Time.fixedDeltaTime * 80));
+                rb.AddForce(new Vector2(0, upForceToAdd * Time.fixedDeltaTime * 100));
                 upForceToAdd = 0;
             }
     }
@@ -145,7 +163,15 @@ public class Bird : MonoBehaviour
 
     public void sendToCheckpoint()
     {
-        transform.position = checkpoint.position;
+        if (teleporting <= 0)
+        {
+
+
+            teleportRen.enabled = true;
+            teleportAnim.SetTrigger("teleporting");
+            teleportSFX.Play();
+            teleporting = 0.5f;
+        }
     }
 
     public void updateAccessLevel(int newLevel)
@@ -158,7 +184,6 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.layer == 6) 
         {
-            print("Test1");
             anim.SetBool("onGround", true);
             onGround = true;
             tempMovementSoundPlayer.resource = landing;
@@ -171,7 +196,6 @@ public class Bird : MonoBehaviour
     {
         if (collision.gameObject.layer == 6) 
         {
-            print("Test2");
             anim.SetBool("onGround", false);
             onGround = false;
             tempMovementSoundPlayer.resource = takingOff;

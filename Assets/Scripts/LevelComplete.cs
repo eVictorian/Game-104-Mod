@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
-    /*
-    public GameObject winUI;
-    public GameObject winParticles;
-    */
+    public bool levelCompleted = false;
 
     private void Start()
     {
@@ -22,7 +19,7 @@ public class LevelComplete : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && levelCompleted)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             /*
