@@ -21,6 +21,7 @@ public class LevelComplete : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && levelCompleted)
         {
+            collision.GetComponent<scoreData>().sendData(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             /*
             collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;

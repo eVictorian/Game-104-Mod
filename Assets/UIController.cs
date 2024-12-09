@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UIController : MonoBehaviour
 
     TextMeshProUGUI objectives;
     [SerializeField]GameObject objectivesObject;
+    [SerializeField]scoreData scoreData;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,11 @@ public class UIController : MonoBehaviour
                 if (escapeTimeSeconds < 0)
                 {
                     escapeTimeMins -= 1;
+                    if (escapeTimeMins < 0)
+                        {
+                            scoreData.sendData(false);
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                        }
                     escapeTimeSeconds = 60;
                 }
             }

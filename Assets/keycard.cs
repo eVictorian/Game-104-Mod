@@ -23,6 +23,7 @@ public class keycard : MonoBehaviour
             if (collision.gameObject.GetComponent<Bird>().accessLevel < cardLevel) 
             { 
                 collision.gameObject.GetComponent<Bird>().updateAccessLevel(cardLevel);
+                collision.GetComponent<Bird>().playPickup();
                 Destroy(this.gameObject);
             }
         }

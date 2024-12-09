@@ -48,6 +48,8 @@ public class Bird : MonoBehaviour
     [SerializeField] Animator teleportAnim;
     [SerializeField] SpriteRenderer teleportRen;
     [SerializeField] AudioSource teleportSFX;
+
+    [SerializeField] AudioSource pickUp;
     void Start()
 	{
         tempMovementSoundPlayer = GetComponent<AudioSource>();
@@ -171,6 +173,8 @@ public class Bird : MonoBehaviour
             teleportAnim.SetTrigger("teleporting");
             teleportSFX.Play();
             teleporting = 0.5f;
+
+            GetComponent<scoreData>().emergencyTeleports += 1;
         }
     }
 
@@ -206,7 +210,10 @@ public class Bird : MonoBehaviour
         
     }
 
-    
+    public void playPickup()
+    {
+        pickUp.Play();
+    }
 
     void ShowDeathUI()
     {

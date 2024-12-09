@@ -26,6 +26,11 @@ public class secretDocument : MonoBehaviour
         {
             UI.timerActive = true;
             LevelComplete.levelCompleted = true;
+
+            collision.GetComponent<Bird>().playPickup();
+            
+            Destroy(gameObject);
+
         }
     }
 
