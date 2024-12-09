@@ -1,10 +1,14 @@
-# Game-102-Mod
+# Game-104-Mod
 Uni games project
 
 Used Licenses 
 
-Teleport animation
-https://graphicriver.net/licenses/standard?license=regular
+Art:
+Teleport animation: https://graphicriver.net/licenses/standard?license=regular
+Tilemap: https://mynastudios.itch.io/basic-platformer-tileset
 
-Teleport Sound:
-https://pixabay.com/sound-effects/teleport-14639/
+SFX:
+
+Teleport Sound: https://pixabay.com/sound-effects/teleport-14639/
+
+
