@@ -25,6 +25,10 @@ public class doorScanner : MonoBehaviour
             {
                 GetComponentInParent<door>().openDoor();
             }
+            else
+            {
+                GetComponentInParent<door>().rejected();
+            }
         }
     }
 }
