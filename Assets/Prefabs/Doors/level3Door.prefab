@@ -764,7 +764,7 @@ MonoBehaviour:
     m_TrimEdge: 0.05
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.05
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.05
   m_PreviousEdgeProcessing: 1
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 7981925070602185294}
   - component: {fileID: 3200866826587234403}
   - component: {fileID: 2267387767613194659}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: exitDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

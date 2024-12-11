@@ -763,9 +763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShadowGroup: 0
-  m_Priority: 0
+  m_Priority: 1
   m_ComponentVersion: 5
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -793,10 +793,10 @@ MonoBehaviour:
     m_FlipY: 0
     m_InitialTrim: 0.05
   m_CastingOption: 1
-  m_PreviousTrimEdge: 0
-  m_PreviousEdgeProcessing: -1
-  m_PreviousShadowCastingSource: -1
-  m_PreviousShadowShape2DSource: {fileID: 0}
+  m_PreviousTrimEdge: 0.05
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 2
+  m_PreviousShadowShape2DSource: {fileID: 7643846253794305874}
   references:
     version: 2
     RefIds:
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 7981925070602185294}
   - component: {fileID: 3200866826587234403}
   - component: {fileID: 2267387767613194659}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: exitDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,6 +23,7 @@ public class checkPoint : MonoBehaviour
         if (collision.gameObject.tag == "Player" && !(usedCheckpoint))
         {
             collision.gameObject.GetComponent<Bird>().checkpoint = self;
+            usedCheckpoint = true;
         }
     }
 }
