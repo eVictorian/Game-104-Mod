@@ -90,8 +90,6 @@ public class Guard : MonoBehaviour
                 rotateDirection = "tracking";
             }
 
-
-
             if (Raycast.hasLineOfSight())
             {
                 
@@ -105,7 +103,6 @@ public class Guard : MonoBehaviour
                 footsteps.Play();
             }
             updateDetectionBar();
-
         }
 
         else if (playerDetectedLevel > 0) 
@@ -124,9 +121,6 @@ public class Guard : MonoBehaviour
                 {
                     Torch.transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
                     rotation += rotationSpeed * Time.deltaTime * -1;
-
-
-
                 }
                 else
                 {
