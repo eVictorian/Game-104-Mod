@@ -13,8 +13,8 @@ public class Guard : MonoBehaviour
     [SerializeField] private GuardRaycast Raycast;
 
     private float playerDetectionLevel = 0;
-    private float playerTargetLevel = 0.75f; //player starts being tracked by the guard
-    private float playerDetectedLevel = 3.5f; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
+    private float playerTargetLevel = 2f; //player starts being tracked by the guard
+    private float playerDetectedLevel = 4f; //if playerDetectionLevel reaches playerDetectedLevel the player will be spotted
 
     public int playerLightCollisionLevel = 0; //0 = not in tourch, 1 = in outerbounds of torch, 2 = innerbounds of torch
 
