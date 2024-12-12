@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     public bool timerActive = false;
     float escapeTimeMins = 2;
-    float escapeTimeSeconds = 30;
+    float escapeTimeSeconds = 0;
     float escapeTimeMilSecs = 0;
 
     TextMeshProUGUI objectives;
@@ -38,7 +38,7 @@ public class UIController : MonoBehaviour
                             scoreData.sendData(false);
                             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                         }
-                    escapeTimeSeconds = 60;
+                    escapeTimeSeconds = 59;
                 }
             }
             objectives.text = ("Self Destruct: "+escapeTimeMins.ToString() + ":" + escapeTimeSeconds.ToString()+":" + ((int)escapeTimeMilSecs).ToString()+"\nEscape (optional)");
